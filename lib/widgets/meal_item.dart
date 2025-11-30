@@ -5,8 +5,9 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:meals/screens/meal_details.dart';
 class MealItem extends StatelessWidget {
   final Meal meal;
-  const MealItem({super.key,required this.meal});
-
+  const MealItem({super.key,required this.meal,required this.onToggleFavorite});
+  final void Function(Meal meal) onToggleFavorite;
+  
 String get complexityText{
   return meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1) ;
 }
@@ -14,9 +15,12 @@ String get affodabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
   }
+//cluster all functions on main screen and pass here instead of this specific function
 void gotoMealsSpecificScreen(BuildContext context){
   
-  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal:meal)));
+  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal:meal,onToggleFavorite: onToggleFavorite,
+         
+        )));
 }
   @override
   Widget build(BuildContext context) {
@@ -58,6 +62,7 @@ void gotoMealsSpecificScreen(BuildContext context){
                       ),
                     const SizedBox(height: 12,),
                     Row(
+                    
                       mainAxisAlignment: .center,
                       children: [
                         //instead of repeating the widget multiple times here to show traits of meal we make a cusome widget meal_item_trait.dart
