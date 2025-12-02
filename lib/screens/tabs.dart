@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories.dart';
+import 'package:meals/screens/filters_screen.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/meals_model.dart';
+import '../widgets/main_drawer.dart';
+import '../screens/filters_screen.dart';
 class TabsScreen extends StatefulWidget{
 
   const TabsScreen({super.key});
@@ -45,7 +48,14 @@ class _TabsScreenState extends State<TabsScreen>{
     });
     
   }
-
+  void _setScreen(String identifier){
+    //closes the drawer if on same screen
+  Navigator.pop(context); //closes drawer before navigating to filters
+    if(identifier=='filters'){
+      
+      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> FiltersScreen()));
+    }
+  }
   @override
   Widget build(context){
     
@@ -66,6 +76,8 @@ class _TabsScreenState extends State<TabsScreen>{
         title: Text(activePageTitle),
 
       ),
+      drawer:  MainDrawer(onSelectScreen: _setScreen,) , //lets create a custom drawer main_drawer.dart
+
       // to set body based on tap
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
