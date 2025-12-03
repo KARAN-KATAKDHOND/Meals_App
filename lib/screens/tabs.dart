@@ -48,12 +48,17 @@ class _TabsScreenState extends State<TabsScreen>{
     });
     
   }
-  void _setScreen(String identifier){
+  void _setScreen(String identifier) async{
     //closes the drawer if on same screen
   Navigator.pop(context); //closes drawer before navigating to filters
     if(identifier=='filters'){
-      
-      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> FiltersScreen()));
+    //accepts input from that filters screen function ,waits for it. 
+    //and State the type of input that will be received such as <Map<Key,Value>>  
+    final result = await Navigator.of(context).push<Map<Filter,bool>>(
+        MaterialPageRoute(
+          builder: (ctx)=> FiltersScreen()));
+    print(result);
+
     }
   }
   @override

@@ -10,6 +10,12 @@ class MainDrawer extends StatelessWidget {
       //backgroundColor: Colors.amber,
       child: Column(
         children: [
+          //Fix this button in the end
+          IconButton(
+            onPressed: (){Navigator.pop(context);}, 
+            icon: Icon(Icons.close),
+            alignment: AlignmentGeometry.topRight,
+            ),
           DrawerHeader(
             padding: const EdgeInsetsGeometry.all(20),
             decoration: BoxDecoration(
