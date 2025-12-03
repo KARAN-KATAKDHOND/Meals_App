@@ -5,8 +5,10 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:meals/screens/meal_details.dart';
 class MealItem extends StatelessWidget {
   final Meal meal;
-  const MealItem({super.key,required this.meal,required this.onToggleFavorite});
-  final void Function(Meal meal) onToggleFavorite;
+  const MealItem({super.key,required this.meal,
+  //required this.onToggleFavorite
+  });
+  //final void Function(Meal meal) onToggleFavorite;
   
 String get complexityText{
   return meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1) ;
@@ -18,8 +20,9 @@ String get affodabilityText {
 //cluster all functions on main screen and pass here instead of this specific function
 void gotoMealsSpecificScreen(BuildContext context){
   
-  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal:meal,onToggleFavorite: onToggleFavorite,
-         
+  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal:meal,
+  
+  //onToggleFavorite: onToggleFavorite,
         )));
 }
   @override
