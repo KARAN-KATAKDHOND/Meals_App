@@ -41,7 +41,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: "^0.13.1" 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -90,3 +90,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: "launcher_icon" # Name of the generated folder
+  ios: true                 # Generate icons for iOS
+  image_path: "lib/assets/images/app_logo.png" # 👈 Your 1024x1024 source image path
+  min_sdk_android: 21       # Minimum Android SDK supported
+  # Optional: To use a different icon for Android adaptive icons:
+  # adaptive_icon_background: "#FFFFFF"
+  # adaptive_icon_foreground: "assets/images/foreground_layer.png"

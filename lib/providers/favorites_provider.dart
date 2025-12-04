@@ -46,3 +46,15 @@ final favoriteMealsProvider = StateNotifierProvider<FavoriteMealsNotifier,List<M
   //favorite meal in a list
 
 
+
+
+
+
+
+
+
+
+
+
+
+

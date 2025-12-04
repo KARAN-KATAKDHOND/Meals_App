@@ -10,12 +10,34 @@ class MainDrawer extends StatelessWidget {
       //backgroundColor: Colors.amber,
       child: Column(
         children: [
-          //Fix this button in the end
-          IconButton(
-            onPressed: (){Navigator.pop(context);}, 
-            icon: Icon(Icons.close),
-            alignment: AlignmentGeometry.topRight,
+          //close icon
+
+        SafeArea(
+            // Ensures content starts below the status bar
+            child: Align(
+              alignment: Alignment
+                  .topRight, // Pushes the IconButton to the top-right of its parent (the Drawer)
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  right: 10,
+                  bottom: 0,
+                ), // Add some padding for visual appeal
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    size: 28,
+                  ), // Use const if possible
+                  // The color will automatically match the theme's background color.
+                ),
+              ),
             ),
+          ),
+
+          //drawer header
           DrawerHeader(
             padding: const EdgeInsetsGeometry.all(20),
             decoration: BoxDecoration(
@@ -40,14 +62,18 @@ class MainDrawer extends StatelessWidget {
                 ),
                 SizedBox(width: 35),
                 Text(
-                  'Cooking Up!',
+                  'Feast',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
+                    fontSize: 30,
+                    
                   ),
                 ),
               ],
             ),
           ),
+
+           const SizedBox(height: 40),
           //body of Drawer
         ListTile(
           leading: Icon(Icons.restaurant_menu,size: 26,color:Theme.of(context).colorScheme.onBackground,),
@@ -82,6 +108,23 @@ class MainDrawer extends StatelessWidget {
               onSelectScreen('filters');
             },
           ),
+       
+
+
+
+          // Add your signature/initials here
+          const Spacer(), // Pushes the following widget to the very bottom
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Developed by Karan Katakdhond', // <- Add your mark here
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+          ) // End of Column children
+     
         ],
       ),
     );
