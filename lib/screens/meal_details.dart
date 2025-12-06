@@ -38,8 +38,23 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon:  Icon(isFavorite?Icons.star:Icons.star_border,
-            color: isFavorite?Colors.amber:Colors.grey,
+            icon:  AnimatedSwitcher(
+              //autodetects interaction and creates animation no need to manually do so
+
+              duration: const Duration(milliseconds: 500),
+              child: Icon(
+              isFavorite?Icons.star:Icons.star_border,
+              color: isFavorite?Colors.amber:Colors.grey,
+              key: ValueKey(isFavorite),//to let flutter identify changes in state of button
+              ),
+              transitionBuilder: (child,animation){
+                  return RotationTransition(
+                    turns: Tween<double>(
+                      begin: 0.5 ,
+                      end:1.0 ,
+                    ).animate(animation),//passing animation controller
+                    child: child,);
+              },
             ),
           ),
         ],
@@ -62,21 +77,24 @@ class MealDetailsScreen extends ConsumerWidget {
             // ),
 
             //handles error in loading image and shows status of image loading
-            Image.network(
-              meal.imageUrl,
-              // ... existing properties
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                // Show a progress indicator while loading
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
+            Hero(
+              tag: meal.id,//identification unique tag
+              child: Image.network(
+                meal.imageUrl,
+                // ... existing properties
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  // Show a progress indicator while loading
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+              ),
             ),
             const SizedBox(height: 20),
             Text(

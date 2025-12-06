@@ -37,11 +37,14 @@ void gotoMealsSpecificScreen(BuildContext context){
         onTap:()=>gotoMealsSpecificScreen(context),
         child: Stack(
           children: [
-            FadeInImage(placeholder: MemoryImage(kTransparentImage),
-            image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              width: double.infinity, 
-              height: 200,),
+            Hero(
+              tag: meal.id,//identification unique per widget
+              child: FadeInImage(placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                width: double.infinity, 
+                height: 200,),
+            ),
             Positioned(
               bottom: 0,
               left: 0,
